@@ -14,16 +14,9 @@
         android:id="@+id/taskCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toStartOf="@id/taskButton"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="10dp"/>
 
-    <Button
-        android:id="@+id/taskButton"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:gravity="center"
-        android:background="@android:drawable/ic_delete"
-        android:layout_alignParentEnd="true"/>
 
 </RelativeLayout>

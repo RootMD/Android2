@@ -3,8 +3,10 @@ package com.third.michau.organizerlist.View;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -17,9 +19,11 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+	public static final String TAG = "Main Activity";
 	protected ArrayList<Task> taskList;
 	private final int REQUEST_CODE = 1;
 	private ListAdapter listAdapter;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +32,22 @@ public class MainActivity extends AppCompatActivity {
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 		taskList = getTaskMockup();
-		listAdapter = new ListAdapter(taskList,this);
+		listAdapter = new ListAdapter(taskList, this);
 		ListView modelList = findViewById(R.id.lvModelList);
 		modelList.setAdapter(listAdapter);
+		Log.e(TAG, "onCreate");
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		Log.e(TAG, "onResume");
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		Log.e(TAG, "onPause");
 	}
 
 	@Override
@@ -53,7 +70,20 @@ public class MainActivity extends AppCompatActivity {
 			intent.putParcelableArrayListExtra("List", taskList);
 			startActivityForResult(intent, REQUEST_CODE);
 		}
-
+		if (id == R.id.action_remove) {
+			ArrayList<Integer> positions = new ArrayList<>();
+			for (Task task : taskList) {
+				if (task.getChecked()) {
+					positions.add(taskList.indexOf(task));
+				}
+			}
+			for(int i=0; i<positions.size(); i++) {
+				int position = positions.get(i) - i;
+				taskList.remove(position);
+			}
+			Toast.makeText(getApplicationContext(), "Removed a Task", Toast.LENGTH_SHORT).show();
+		}
+		listAdapter.notifyDataSetChanged();
 		return super.onOptionsItemSelected(item);
 	}
 
@@ -66,10 +96,10 @@ public class MainActivity extends AppCompatActivity {
 			listAdapter.getData().clear();
 			listAdapter.getData().addAll(taskList);
 			listAdapter.notifyDataSetChanged();
-			Toast.makeText(this, "new Task added", Toast.LENGTH_SHORT).show();
-
+			Snackbar.make(findViewById(R.id.main), "ITEM ADDED", Snackbar.LENGTH_LONG).setAction("No action", null).show();
 		}
 	}
+
 	private ArrayList<Task> getTaskMockup() {
 		ArrayList<Task> list = new ArrayList<>();
 		list.add(new Task("task1"));

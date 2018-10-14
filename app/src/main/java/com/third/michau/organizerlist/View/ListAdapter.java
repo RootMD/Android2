@@ -1,15 +1,14 @@
 package com.third.michau.organizerlist.View;
 
 import android.content.Context;
+import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.third.michau.organizerlist.Model.Task;
 import com.third.michau.organizerlist.R;
@@ -27,6 +26,11 @@ public class ListAdapter extends BaseAdapter {
 		this.modelList = modelList;
 		this.context = context;
 	}
+
+	public void removeItems(){
+
+	}
+
 
 	@Override
 	public int getCount() {
@@ -47,6 +51,12 @@ public class ListAdapter extends BaseAdapter {
 		return modelList;
 	}
 
+
+	public void onClick(View v) {
+
+		Snackbar.make(v, "Release date ", Snackbar.LENGTH_LONG).setAction("No action", null).show();
+	}
+
 	@Override
 	public View getView(final int position, View cView, ViewGroup parent) {
 		final ListViewHolder viewHolder;
@@ -57,20 +67,11 @@ public class ListAdapter extends BaseAdapter {
 			result = inflater.inflate(R.layout.task_item, parent, false);
 			viewHolder.text = result.findViewById(R.id.taskText);
 			viewHolder.taskCheckbox = result.findViewById(R.id.taskCheck);
-			viewHolder.taskButton = result.findViewById(R.id.taskButton);
 			viewHolder.taskCheckbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 				@Override
 				public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 					Task element = (Task) viewHolder.taskCheckbox.getTag();
 					element.setChecked(compoundButton.isChecked());
-				}
-			});
-			viewHolder.taskButton.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View view) {
-					getData().remove(position);
-					Toast.makeText(view.getContext(), "Removed a Task", Toast.LENGTH_SHORT).show();
-					notifyDataSetChanged();
 				}
 			});
 			result.setTag(viewHolder);
@@ -89,7 +90,6 @@ public class ListAdapter extends BaseAdapter {
 	private static class ListViewHolder {
 		protected TextView text;
 		protected CheckBox taskCheckbox;
-		protected Button taskButton;
 	}
 
 }
