@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/taskText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="23sp"
+        android:layout_alignParentStart="true"/>
+
+    <CheckBox
+        android:id="@+id/taskCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@id/taskButton"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="10dp"/>
+
+    <Button
+        android:id="@+id/taskButton"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:gravity="center"
+        android:background="@android:drawable/ic_delete"
+        android:layout_alignParentEnd="true"/>
+
+</RelativeLayout>
