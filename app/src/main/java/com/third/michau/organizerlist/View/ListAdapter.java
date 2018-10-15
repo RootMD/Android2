@@ -63,13 +63,18 @@ public class ListAdapter extends BaseAdapter {
 				public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 					Task element = (Task) viewHolder.taskCheckbox.getTag();
 					element.setChecked(compoundButton.isChecked());
+					if(viewHolder.taskCheckbox.isChecked()){
+						getData().remove(position);
+						Toast.makeText(context, "DONE!!!", Toast.LENGTH_SHORT).show();
+						notifyDataSetChanged();
+					}
 				}
 			});
 			viewHolder.taskButton.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
 					getData().remove(position);
-					Toast.makeText(view.getContext(), "Removed a Task", Toast.LENGTH_SHORT).show();
+					Toast.makeText(view.getContext(), "Removed", Toast.LENGTH_SHORT).show();
 					notifyDataSetChanged();
 				}
 			});
@@ -82,12 +87,6 @@ public class ListAdapter extends BaseAdapter {
 		}
 		viewHolder.text.setText(modelList.get(position).getText());
 		viewHolder.taskCheckbox.setChecked(modelList.get(position).getChecked());
-		if(viewHolder.taskCheckbox.isChecked()){
-			getData().remove(position);
-			Toast.makeText(context, "DONE!!!", Toast.LENGTH_SHORT).show();
-			notifyDataSetChanged();
-
-		}
 
 		return result;
 	}
