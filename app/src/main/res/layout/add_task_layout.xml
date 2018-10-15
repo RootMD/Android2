@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/dark">
 
 
     <EditText
@@ -12,15 +13,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="Name"
-        android:layout_marginEnd="10dp"
-        android:layout_marginStart="10dp"/>
+        android:hint="Text"
+        android:textColorHint="@color/text"
+        android:textColor="@color/text"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"/>
 
     <Button
         android:id="@+id/bAdd"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add"
+        android:textColor="@color/text"
+        android:backgroundTint="@color/lightLavender"
+        android:layout_gravity="center"
         android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"/>
 

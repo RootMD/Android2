@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/taskText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="23sp"
-        android:layout_alignParentStart="true"/>
+        android:layout_marginStart="20dp"
+        android:layout_alignParentStart="true"
+        android:textColor="@color/text"/>
 
     <CheckBox
         android:id="@+id/taskCheck"
@@ -23,6 +25,7 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:gravity="center"
+        android:layout_marginEnd="20dp"
         android:background="@android:drawable/ic_delete"
         android:layout_alignParentEnd="true"/>
 

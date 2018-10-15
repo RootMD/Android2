@@ -82,6 +82,12 @@ public class ListAdapter extends BaseAdapter {
 		}
 		viewHolder.text.setText(modelList.get(position).getText());
 		viewHolder.taskCheckbox.setChecked(modelList.get(position).getChecked());
+		if(viewHolder.taskCheckbox.isChecked()){
+			getData().remove(position);
+			Toast.makeText(context, "DONE!!!", Toast.LENGTH_SHORT).show();
+			notifyDataSetChanged();
+
+		}
 
 		return result;
 	}

@@ -3,4 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="backgroundColor">#545E56</color>
+    <color name="lavender">#917C78</color>
+    <color name="lightLavender">#B79492</color>
+    <color name="text">#EAE1DF</color>
+    <color name="dark">#323832</color>
+
 </resources>

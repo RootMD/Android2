@@ -3,8 +3,10 @@ package com.third.michau.organizerlist.View;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 	protected ArrayList<Task> taskList;
 	private final int REQUEST_CODE = 1;
 	private ListAdapter listAdapter;
+	public static final String TAG = "Main Activity";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +30,23 @@ public class MainActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_main);
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
-		taskList = getTaskMockup();
+		taskList = getTasks();
 		listAdapter = new ListAdapter(taskList,this);
 		ListView modelList = findViewById(R.id.lvModelList);
 		modelList.setAdapter(listAdapter);
+		Log.e(TAG, "onCreate");
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		Log.e(TAG, "onResume");
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		Log.e(TAG, "onPause");
 	}
 
 	@Override
@@ -66,20 +82,16 @@ public class MainActivity extends AppCompatActivity {
 			listAdapter.getData().clear();
 			listAdapter.getData().addAll(taskList);
 			listAdapter.notifyDataSetChanged();
-			Toast.makeText(this, "new Task added", Toast.LENGTH_SHORT).show();
+			Snackbar.make(findViewById(R.id.main_activity), "new Task added", Toast.LENGTH_SHORT).setAction("No action",null).show();
 
 		}
 	}
-	private ArrayList<Task> getTaskMockup() {
+	private ArrayList<Task> getTasks() {
 		ArrayList<Task> list = new ArrayList<>();
-		list.add(new Task("task1"));
-		list.add(new Task("task2"));
-		list.add(new Task("task3"));
-		list.add(new Task("task4"));
-		list.add(new Task("task5"));
-		list.add(new Task("task6"));
-		list.add(new Task("task7"));
-		list.add(new Task("task8"));
+		list.add(new Task("Do it 1"));
+		list.add(new Task("Do it 2"));
+		list.add(new Task("Do it 3"));
+		list.add(new Task("Do it 4"));
 		return list;
 	}
 }
